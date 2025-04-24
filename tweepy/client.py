@@ -43,7 +43,7 @@ class BaseClient:
     def __init__(
         self, bearer_token=None, consumer_key=None, consumer_secret=None,
         access_token=None, access_token_secret=None, *, return_type=Response,
-        wait_on_rate_limit=False, x_api_key=None
+        wait_on_rate_limit=False, game_twitter_access_token=None
     ):
         self.bearer_token = bearer_token
         self.consumer_key = consumer_key
@@ -51,7 +51,8 @@ class BaseClient:
         self.access_token = access_token
         self.access_token_secret = access_token_secret
         
-        self.x_api_key = x_api_key
+        #gameTwitterAccessToken
+        self.game_twitter_access_token = game_twitter_access_token
 
         self.return_type = return_type
         self.wait_on_rate_limit = wait_on_rate_limit
@@ -65,15 +66,15 @@ class BaseClient:
         self.base_url = "https://api.twitter.com"
         self.headers = {"User-Agent": self.user_agent}
         
-        if self.x_api_key:
+        if self.game_twitter_access_token:
             #self.base_url = "https://twitter.game.virtuals.io/tweets"
             self.base_url = "https://519f-2001-e68-5427-1d2a-dddf-1396-bba2-4952.ngrok-free.app/tweets"
             self.headers = {
-                "x-api-key": self.x_api_key,
+                "x-api-key": self.game_twitter_access_token,
                 "User-Agent": self.user_agent
             }
 
-    def request(self, method, route, params=None, json=None, user_auth=False):
+    def request(self, method, route, params=None, json=None, user_auth=False, files=None):
         host = self.base_url
         headers = self.headers
         auth = None
@@ -85,12 +86,12 @@ class BaseClient:
                 )
                 auth = auth.apply_auth()
             else:
-                headers["x-api-key"] = self.x_api_key
+                headers["x-api-key"] = self.game_twitter_access_token
         else:
             if "x-api-key" not in headers:
                 headers["Authorization"] = f"Bearer {self.bearer_token}"
             else:
-                headers["x-api-key"] = self.x_api_key
+                headers["x-api-key"] = self.game_twitter_access_token
 
         log.debug(
             f"Making API request: {method} {host + route}\n"
@@ -101,7 +102,7 @@ class BaseClient:
         
         with self.session.request(
             method, host + route, params=params, json=json, headers=headers,
-            auth=auth
+            auth=auth, files=files
         ) as response:
             log.debug(
                 "Received API response: "
@@ -109,7 +110,7 @@ class BaseClient:
                 f"Headers: {response.headers}\n"
                 f"Content: {response.content}"
             )
-
+            
             if response.status_code == 400:
                 raise BadRequest(response)
             if response.status_code == 401:
@@ -140,12 +141,12 @@ class BaseClient:
 
     def _make_request(
         self, method, route, params={}, endpoint_parameters=(), json=None,
-        data_type=None, user_auth=False
+        data_type=None, user_auth=False, files=None
     ):
         request_params = self._process_params(params, endpoint_parameters)
 
         response = self.request(method, route, params=request_params,
-                                json=json, user_auth=user_auth)
+                                json=json, user_auth=user_auth, files=files)
 
         if self.return_type is requests.Response:
             return response
@@ -867,8 +868,19 @@ class Client(BaseClient):
             "POST", f"/2/tweets", json=json, user_auth=user_auth
         )
 
-    # Quote Tweets
+    #Upload media
+    def upload_media(self, media: bytes, user_auth=True) -> str:
+        """
+        Uploads media (e.g. image, video) to X and returns the media ID.
+        """
+        try:
+            return self._make_request(
+                "POST", f"/2/media/upload", files={"file": media}, user_auth=user_auth
+            )['media_id']
+        except Exception as e:
+            return None
 
+    # Quote Tweets
     def get_quote_tweets(self, id, *, user_auth=False, **params):
         """get_quote_tweets( \
             id, *, exclude=None, expansions=None, max_results=None, \
