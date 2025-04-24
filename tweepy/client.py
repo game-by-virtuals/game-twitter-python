@@ -43,13 +43,15 @@ class BaseClient:
     def __init__(
         self, bearer_token=None, consumer_key=None, consumer_secret=None,
         access_token=None, access_token_secret=None, *, return_type=Response,
-        wait_on_rate_limit=False
+        wait_on_rate_limit=False, x_api_key=None
     ):
         self.bearer_token = bearer_token
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
         self.access_token = access_token
         self.access_token_secret = access_token_secret
+        
+        self.x_api_key = x_api_key
 
         self.return_type = return_type
         self.wait_on_rate_limit = wait_on_rate_limit
@@ -60,19 +62,35 @@ class BaseClient:
             f"Requests/{requests.__version__} "
             f"Tweepy/{tweepy.__version__}"
         )
+        self.base_url = "https://api.twitter.com"
+        self.headers = {"User-Agent": self.user_agent}
+        
+        if self.x_api_key:
+            #self.base_url = "https://twitter.game.virtuals.io/tweets"
+            self.base_url = "https://519f-2001-e68-5427-1d2a-dddf-1396-bba2-4952.ngrok-free.app/tweets"
+            self.headers = {
+                "x-api-key": self.x_api_key,
+                "User-Agent": self.user_agent
+            }
 
     def request(self, method, route, params=None, json=None, user_auth=False):
-        host = "https://api.twitter.com"
-        headers = {"User-Agent": self.user_agent}
+        host = self.base_url
+        headers = self.headers
         auth = None
         if user_auth:
-            auth = OAuth1UserHandler(
-                self.consumer_key, self.consumer_secret,
-                self.access_token, self.access_token_secret
-            )
-            auth = auth.apply_auth()
+            if "x-api-key" not in headers:
+                auth = OAuth1UserHandler(
+                    self.consumer_key, self.consumer_secret,
+                    self.access_token, self.access_token_secret
+                )
+                auth = auth.apply_auth()
+            else:
+                headers["x-api-key"] = self.x_api_key
         else:
-            headers["Authorization"] = f"Bearer {self.bearer_token}"
+            if "x-api-key" not in headers:
+                headers["Authorization"] = f"Bearer {self.bearer_token}"
+            else:
+                headers["x-api-key"] = self.x_api_key
 
         log.debug(
             f"Making API request: {method} {host + route}\n"
@@ -80,7 +98,7 @@ class BaseClient:
             f"Headers: {headers}\n"
             f"Body: {json}"
         )
-
+        
         with self.session.request(
             method, host + route, params=params, json=json, headers=headers,
             auth=auth
@@ -241,6 +259,9 @@ class Client(BaseClient):
     """
 
     def _get_authenticating_user_id(self, *, oauth_1=False):
+        if self.x_api_key:
+            return self.get_me(user_auth=False)["data"]["id"]
+        
         if oauth_1:
             if self.access_token is None:
                 raise TypeError(
