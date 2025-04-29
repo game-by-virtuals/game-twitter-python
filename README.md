@@ -1,46 +1,25 @@
-Tweepy: Twitter for Python!
-======
+# Virtual Tweepy: Twitter for Python!
 
-[![PyPI Version](https://img.shields.io/pypi/v/tweepy?label=PyPI)](https://pypi.org/project/tweepy/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/tweepy?label=Python)](https://pypi.org/project/tweepy/)
-[![DOI](https://zenodo.org/badge/244025.svg)](https://zenodo.org/badge/latestdoi/244025)
-
-[![Documentation Status](https://readthedocs.org/projects/tweepy/badge/?version=latest)](https://tweepy.readthedocs.io/en/latest/)
-[![Test Status](https://github.com/tweepy/tweepy/workflows/Test/badge.svg)](https://github.com/tweepy/tweepy/actions?query=workflow%3ATest)
-[![Coverage Status](https://img.shields.io/coveralls/tweepy/tweepy/master.svg?style=flat)](https://coveralls.io/github/tweepy/tweepy?branch=master)
-
-[![Discord Server](https://discord.com/api/guilds/432685901596852224/embed.png)](https://discord.gg/bJvqnhg)
-
-Installation
-------------
+## Installation
 
 The easiest way to install the latest version from PyPI is by using
 [pip](https://pip.pypa.io/):
 
-    pip install tweepy
+    pip install virtual-tweepy
 
 To use the `tweepy.asynchronous` subpackage, be sure to install with the
 `async` extra:
 
-    pip install tweepy[async]
-
-You can also use Git to clone the repository from GitHub to install the latest
-development version:
-
-    git clone https://github.com/tweepy/tweepy.git
-    cd tweepy
-    pip install .
-
-Alternatively, install directly from the GitHub repository:
-
-    pip install git+https://github.com/tweepy/tweepy.git
+    pip install tvirtual-weepy[async]
 
 Latest version of Python and older versions not end of life (bugfix and security) are supported.
 
-Links
------
+## Links
 
 - [Documentation](https://tweepy.readthedocs.io/en/latest/)
-- [Official Discord Server](https://discord.gg/bJvqnhg)
 - [Twitter API Documentation](https://developer.twitter.com/en/docs/twitter-api)
 
+## Acknowledgments
+
+This project is a modified version of [Tweepy](https://github.com/tweepy/tweepy), originally created by Joshua Roesslein.
+Original work is Copyright (c) 2009-2023 Joshua Roesslein and is licensed under the MIT License.
