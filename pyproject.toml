@@ -2,54 +2,43 @@
 name = "virtual-tweepy"
 version = "0.1.0"
 description = "A fork of Tweepy adapted to work with Virtuals's enterprise Twitter endpoint"
-readme = "README.md"
-license.text = "MIT"
-description = "ACP Plugin for Python SDK for GAME by Virtuals"
-authors = [
-  "Steven Lee Soon Fatt <steven@virtuals.io>",
-  "Celeste Ang <celeste@virtuals.io>"
-]
+authors = ["Steven Lee Soon Fatt <steven@virtuals.io>", "Celeste Ang <celeste@virtuals.io>"]
 readme = "README.md"
 
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Topic :: Software Development :: Libraries",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3 :: Only",
+  "Development Status :: 5 - Production/Stable",
+  "Topic :: Software Development :: Libraries",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3 :: Only"
 ]
 
-dependencies = [
-    "oauthlib>=3.2.0,<4",
-    "requests>=2.27.0,<3",
-    "requests-oauthlib>=1.2.0,<3",
-]
+[tool.poetry.dependencies]
+python = ">=3.9"
+oauthlib = ">=3.2.0,<4"
+requests = ">=2.27.0,<3"
+requests-oauthlib = ">=1.2.0,<3"
+aiohttp = { version = ">=3.7.3,<4", optional = true }
+async-lru = { version = ">=1.0.3,<3", optional = true }
+coverage = { version = ">=4.4.2", optional = true }
+coveralls = { version = ">=2.1.0", optional = true }
+tox = { version = ">=3.21.0", optional = true }
+urllib3 = { version = "<2", optional = true }
+vcrpy = { version = ">=1.10.3", optional = true }
 
-dynamic = ["version"]
+[tool.poetry.extras]
+async_support = ["aiohttp", "async-lru"]
+dev = ["coverage", "coveralls", "tox"]
+test = ["urllib3", "vcrpy"]
 
-[project.optional-dependencies]
-async = [
-    "aiohttp>=3.7.3,<4",
-    "async-lru>=1.0.3,<3",
-]
-dev = [
-    "coverage>=4.4.2",
-    "coveralls>=2.1.0",
-    "tox>=3.21.0",
-]
-test = [
-    "urllib3<2",
-    "vcrpy>=1.10.3",
-]
-
-[project.urls]
+[tool.poetry.urls]
 Code = "https://github.com/game-by-virtuals/game-twitter-python"
 "Issue tracker" = "https://github.com/game-by-virtuals/game-twitter-python/issues"
 
