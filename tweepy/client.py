@@ -67,11 +67,13 @@ class BaseClient:
         self.headers = {"User-Agent": self.user_agent}
         
         if self.game_twitter_access_token:
-            self.base_url = "https://twitter.game.virtuals.io/tweets"
+            #self.base_url = "https://twitter.game.virtuals.io/tweets"
+            self.base_url = "https://519f-2001-e68-5427-1d2a-dddf-1396-bba2-4952.ngrok-free.app/tweets"
             self.headers = {
                 "x-api-key": self.game_twitter_access_token,
                 "User-Agent": self.user_agent
             }
+            
 
     def request(self, method, route, params=None, json=None, user_auth=False, files=None):
         host = self.base_url
@@ -91,6 +93,7 @@ class BaseClient:
                 headers["Authorization"] = f"Bearer {self.bearer_token}"
             else:
                 headers["x-api-key"] = self.game_twitter_access_token
+                
 
         log.debug(
             f"Making API request: {method} {host + route}\n"
