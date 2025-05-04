@@ -2,8 +2,8 @@
 # Copyright 2009-2023 Joshua Roesslein
 # See LICENSE for details.
 
-from tweepy.mixins import DataMapping, HashableID
-from tweepy.utils import parse_datetime
+from virtual_tweepy.mixins import DataMapping, HashableID
+from virtual_tweepy.utils import parse_datetime
 
 
 #: All the potential publically-available fields for :class:`Space` objects

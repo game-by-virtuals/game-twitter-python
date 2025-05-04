@@ -2,7 +2,7 @@
 # Copyright 2009-2023 Joshua Roesslein
 # See LICENSE for details.
 
-from tweepy.mixins import DataMapping, HashableID
+from virtual_tweepy.mixins import DataMapping, HashableID
 
 
 #: All the potential fields for :class:`Place` objects

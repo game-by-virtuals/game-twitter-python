@@ -2,9 +2,9 @@
 # Copyright 2009-2023 Joshua Roesslein
 # See LICENSE for details.
 
-from tweepy.mixins import DataMapping, HashableID
-from tweepy.tweet import ReferencedTweet
-from tweepy.utils import parse_datetime
+from virtual_tweepy.mixins import DataMapping, HashableID
+from virtual_tweepy.tweet import ReferencedTweet
+from virtual_tweepy.utils import parse_datetime
 
 
 #: All the potential fields for :class:`DirectMessageEvent` objects

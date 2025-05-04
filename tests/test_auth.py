@@ -2,7 +2,7 @@ import random
 import unittest
 
 from config import *
-from tweepy import API, OAuth1UserHandler
+from virtual_tweepy import API, OAuth1UserHandler
 
 
 class TweepyAuthTests(unittest.TestCase):
