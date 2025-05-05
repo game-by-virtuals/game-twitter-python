@@ -261,7 +261,7 @@ class Client(BaseClient):
     """
 
     def _get_authenticating_user_id(self, *, oauth_1=False):
-        if self.x_api_key:
+        if self.game_twitter_access_token:
             return self.get_me(user_auth=False)["data"]["id"]
         
         if oauth_1:
