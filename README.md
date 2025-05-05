@@ -5,7 +5,7 @@
 The easiest way to install the latest version from PyPI is by using
 [pip](https://pip.pypa.io/):
 
-    pip install virtual-tweepy
+    pip install virtuals-tweepy
 
 Latest version of Python and older versions not end of life (bugfix and security) are supported.
 
