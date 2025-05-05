@@ -2,7 +2,7 @@
 # Copyright 2009-2023 Joshua Roesslein
 # See LICENSE for details.
 
-from virtual_tweepy.mixins import DataMapping
+from virtuals_tweepy.mixins import DataMapping
 
 
 #: All the potential fields for :class:`Media` objects

@@ -4,8 +4,8 @@
 
 from math import inf
 
-from virtual_tweepy.errors import TweepyException
-from virtual_tweepy.parsers import ModelParser, RawParser
+from virtuals_tweepy.errors import TweepyException
+from virtuals_tweepy.parsers import ModelParser, RawParser
 
 
 class Cursor:

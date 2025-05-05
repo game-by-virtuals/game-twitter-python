@@ -4,8 +4,8 @@
 
 import json as json_lib
 
-from virtual_tweepy.errors import TweepyException
-from virtual_tweepy.models import ModelFactory
+from virtuals_tweepy.errors import TweepyException
+from virtuals_tweepy.models import ModelFactory
 
 
 class Parser:

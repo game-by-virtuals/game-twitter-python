@@ -9,7 +9,7 @@ import requests
 from requests.auth import AuthBase, HTTPBasicAuth
 from requests_oauthlib import OAuth1, OAuth1Session, OAuth2Session
 
-from virtual_tweepy.errors import TweepyException
+from virtuals_tweepy.errors import TweepyException
 
 WARNING_MESSAGE = """Warning! Due to a Twitter API bug, signin_with_twitter
 and access_type don't always play nice together. Details

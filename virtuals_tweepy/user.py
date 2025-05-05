@@ -2,8 +2,8 @@
 # Copyright 2009-2023 Joshua Roesslein
 # See LICENSE for details.
 
-from virtual_tweepy.mixins import DataMapping, HashableID
-from virtual_tweepy.utils import parse_datetime
+from virtuals_tweepy.mixins import DataMapping, HashableID
+from virtuals_tweepy.utils import parse_datetime
 
 
 #: All the potential fields for :class:`User` objects

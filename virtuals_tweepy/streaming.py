@@ -18,10 +18,10 @@ from typing import NamedTuple
 import requests
 import urllib3
 
-import virtual_tweepy
-from virtual_tweepy.client import BaseClient, Response
-from virtual_tweepy.errors import TweepyException
-from virtual_tweepy.tweet import Tweet
+import virtuals_tweepy
+from virtuals_tweepy.client import BaseClient, Response
+from virtuals_tweepy.errors import TweepyException
+from virtuals_tweepy.tweet import Tweet
 
 log = logging.getLogger(__name__)
 

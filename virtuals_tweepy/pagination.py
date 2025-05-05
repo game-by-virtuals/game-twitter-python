@@ -6,7 +6,7 @@ from math import inf
 
 import requests
 
-from virtual_tweepy.client import Response
+from virtuals_tweepy.client import Response
 
 
 class Paginator:

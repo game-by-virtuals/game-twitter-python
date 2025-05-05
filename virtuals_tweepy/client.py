@@ -18,20 +18,20 @@ import warnings
 
 import requests
 
-import virtual_tweepy
-from virtual_tweepy.auth import OAuth1UserHandler
-from virtual_tweepy.direct_message_event import DirectMessageEvent
-from virtual_tweepy.errors import (
+import virtuals_tweepy
+from virtuals_tweepy.auth import OAuth1UserHandler
+from virtuals_tweepy.direct_message_event import DirectMessageEvent
+from virtuals_tweepy.errors import (
     BadRequest, Forbidden, HTTPException, NotFound, TooManyRequests,
     TwitterServerError, Unauthorized
 )
-from virtual_tweepy.list import List
-from virtual_tweepy.media import Media
-from virtual_tweepy.place import Place
-from virtual_tweepy.poll import Poll
-from virtual_tweepy.space import Space
-from virtual_tweepy.tweet import Tweet
-from virtual_tweepy.user import User
+from virtuals_tweepy.list import List
+from virtuals_tweepy.media import Media
+from virtuals_tweepy.place import Place
+from virtuals_tweepy.poll import Poll
+from virtuals_tweepy.space import Space
+from virtuals_tweepy.tweet import Tweet
+from virtuals_tweepy.user import User
 
 log = logging.getLogger(__name__)
 
@@ -61,7 +61,7 @@ class BaseClient:
         self.user_agent = (
             f"Python/{python_version()} "
             f"Requests/{requests.__version__} "
-            f"Tweepy/{virtual_tweepy.__version__}"
+            f"Tweepy/{virtuals_tweepy.__version__}"
         )
         self.base_url = "https://api.twitter.com"
         self.headers = {"User-Agent": self.user_agent}
