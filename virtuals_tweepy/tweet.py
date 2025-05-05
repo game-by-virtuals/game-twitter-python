@@ -4,8 +4,8 @@
 
 import warnings
 
-from virtual_tweepy.mixins import DataMapping, HashableID
-from virtual_tweepy.utils import parse_datetime
+from virtuals_tweepy.mixins import DataMapping, HashableID
+from virtuals_tweepy.utils import parse_datetime
 
 
 #: All the potential publically-available fields for :class:`Tweet` objects

@@ -4,7 +4,7 @@
 
 from email.utils import parsedate_to_datetime
 
-from virtual_tweepy.mixins import HashableID
+from virtuals_tweepy.mixins import HashableID
 
 
 class Model:

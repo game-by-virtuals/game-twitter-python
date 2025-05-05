@@ -5,19 +5,9 @@
 The easiest way to install the latest version from PyPI is by using
 [pip](https://pip.pypa.io/):
 
-    pip install virtual-tweepy
-
-To use the `tweepy.asynchronous` subpackage, be sure to install with the
-`async` extra:
-
-    pip install virtual-tweepy[async]
+    pip install virtuals-tweepy
 
 Latest version of Python and older versions not end of life (bugfix and security) are supported.
-
-## Links
-
-- [Documentation](https://tweepy.readthedocs.io/en/latest/)
-- [Twitter API Documentation](https://developer.twitter.com/en/docs/twitter-api)
 
 ## Acknowledgments
 
