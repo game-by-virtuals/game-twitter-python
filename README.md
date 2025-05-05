@@ -14,11 +14,6 @@ To use the `tweepy.asynchronous` subpackage, be sure to install with the
 
 Latest version of Python and older versions not end of life (bugfix and security) are supported.
 
-## Links
-
-- [Documentation](https://tweepy.readthedocs.io/en/latest/)
-- [Twitter API Documentation](https://developer.twitter.com/en/docs/twitter-api)
-
 ## Acknowledgments
 
 This project is a modified version of [Tweepy](https://github.com/tweepy/tweepy), originally created by Joshua Roesslein.
