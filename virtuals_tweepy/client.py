@@ -67,8 +67,7 @@ class BaseClient:
         self.headers = {"User-Agent": self.user_agent}
         
         if self.game_twitter_access_token:
-            #self.base_url = "https://twitter.game.virtuals.io/tweets"
-            self.base_url = "https://519f-2001-e68-5427-1d2a-dddf-1396-bba2-4952.ngrok-free.app/tweets"
+            self.base_url = "https://twitter.game.virtuals.io/tweets"
             self.headers = {
                 "x-api-key": self.game_twitter_access_token,
                 "User-Agent": self.user_agent
