@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "virtuals-tweepy"
-version = "0.1.2"
+version = "0.1.3"
 description = "A fork of Tweepy adapted to work with Virtuals's enterprise Twitter endpoint"
 authors = ["Steven Lee Soon Fatt <steven@virtuals.io>", "Celeste Ang <celeste@virtuals.io>"]
 readme = "README.md"
