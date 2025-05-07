@@ -51,7 +51,6 @@ class BaseClient:
         self.access_token = access_token
         self.access_token_secret = access_token_secret
         
-        #gameTwitterAccessToken
         self.game_twitter_access_token = game_twitter_access_token
 
         self.return_type = return_type
@@ -224,7 +223,7 @@ class Client(BaseClient):
     """Client( \
         bearer_token=None, consumer_key=None, consumer_secret=None, \
         access_token=None, access_token_secret=None, *, return_type=Response, \
-        wait_on_rate_limit=False \
+        game_twitter_access_token=None, wait_on_rate_limit=False \
     )
 
     Twitter API v2 Client
@@ -249,6 +248,8 @@ class Client(BaseClient):
         Twitter API OAuth 1.0a Access Token Secret
     return_type : type[dict | requests.Response | Response]
         Type to return from requests to the API
+    game_twitter_access_token : str | None
+        Virtuals Protocol Twitter API GAME SDK Access Token
     wait_on_rate_limit : bool
         Whether to wait when rate limit is reached
 
