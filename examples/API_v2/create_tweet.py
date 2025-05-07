@@ -1,15 +1,13 @@
-import tweepy
+import os
 
+from virtuals_tweepy import Client
+from dotenv import load_dotenv
 
-consumer_key = ""
-consumer_secret = ""
-access_token = ""
-access_token_secret = ""
+load_dotenv()
 
-client = tweepy.Client(
-    consumer_key=consumer_key, consumer_secret=consumer_secret,
-    access_token=access_token, access_token_secret=access_token_secret
-)
+game_twitter_access_token = os.environ.get("GAME_TWITTER_ACCESS_TOKEN")
+
+client = Client(game_twitter_access_token = game_twitter_access_token)
 
 # Create Tweet
 
@@ -24,7 +22,7 @@ client = tweepy.Client(
 
 # Example 1: Create a regular Tweet
 response = client.create_tweet(
-    text="This Tweet was Tweeted using Tweepy and Twitter API v2!"
+    text="This Tweet was Tweeted using Virtuals Tweepy and Twitter API v2!"
 )
 print(f"https://twitter.com/user/status/{response.data['id']}")
 
