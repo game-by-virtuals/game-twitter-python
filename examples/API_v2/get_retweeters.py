@@ -1,9 +1,13 @@
-import tweepy
+import os
 
+from virtuals_tweepy import Client
+from dotenv import load_dotenv
 
-bearer_token = ""
+load_dotenv()
 
-client = tweepy.Client(bearer_token)
+game_twitter_access_token = os.environ.get("GAME_TWITTER_ACCESS_TOKEN")
+
+client = Client(game_twitter_access_token = game_twitter_access_token)
 
 # Get Tweet's Retweeters
 
@@ -16,6 +20,8 @@ tweet_id = 1460323737035677698
 # returned
 # Additional fields can be retrieved using the user_fields parameter
 response = client.get_retweeters(tweet_id, user_fields=["profile_image_url"])
+print(response)
 
-for user in response.data:
-    print(user.username, user.profile_image_url)
+if response.data:
+    for user in response.data:
+        print(user.username, user.profile_image_url)

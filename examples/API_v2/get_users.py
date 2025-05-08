@@ -1,16 +1,20 @@
-import tweepy
+import os
 
+from virtuals_tweepy import Client
+from dotenv import load_dotenv
 
-bearer_token = ""
+load_dotenv()
 
-client = tweepy.Client(bearer_token)
+game_twitter_access_token = os.environ.get("GAME_TWITTER_ACCESS_TOKEN")
+
+client = Client(game_twitter_access_token = game_twitter_access_token)
 
 # Get Users
 
 # This endpoint/method returns a variety of information about one or more users
 # specified by the requested IDs or usernames
 
-user_ids = [2244994945, 6253282]
+user_ids = [1438365197505232902, 1859490326316187649]
 
 # By default, only the ID, name, and username fields of each user will be
 # returned

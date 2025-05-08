@@ -1,9 +1,13 @@
-import tweepy
+import os
 
+from virtuals_tweepy import Client
+from dotenv import load_dotenv
 
-bearer_token = ""
+load_dotenv()
 
-client = tweepy.Client(bearer_token)
+game_twitter_access_token = os.environ.get("GAME_TWITTER_ACCESS_TOKEN")
+
+client = Client(game_twitter_access_token = game_twitter_access_token)
 
 # Get Recent Tweets Count
 
@@ -17,5 +21,6 @@ query = "Tweepy -is:retweet"
 # The default granularity, if not specified is hour
 response = client.get_recent_tweets_count(query, granularity="day")
 
-for count in response.data:
-    print(count)
+if response.data:
+    for count in response.data:
+        print(count)
