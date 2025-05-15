@@ -880,7 +880,7 @@ class Client(BaseClient):
             "POST", f"/2/media/upload", files={"file": ("filename", media, media_type)}, user_auth=user_auth
         )
 
-        return response.data["media_id"]
+        return response["media_id"]
 
 
     # Quote Tweets
