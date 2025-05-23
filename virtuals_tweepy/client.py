@@ -262,7 +262,8 @@ class Client(BaseClient):
 
     def _get_authenticating_user_id(self, *, oauth_1=False):
         if self.game_twitter_access_token:
-            return self.get_me(user_auth=False)["data"]["id"]
+            response = self.get_me(user_auth=False)
+            return response.data.id
         
         if oauth_1:
             if self.access_token is None:

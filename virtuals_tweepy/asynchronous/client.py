@@ -199,6 +199,10 @@ class AsyncClient(AsyncBaseClient):
     """
 
     async def _get_authenticating_user_id(self, *, oauth_1=False):
+        if self.game_twitter_access_token:
+            response = await self.get_me(user_auth=False)
+            return response.data.id
+        
         if oauth_1:
             if self.access_token is None:
                 raise TypeError(
