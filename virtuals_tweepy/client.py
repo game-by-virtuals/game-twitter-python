@@ -51,7 +51,6 @@ class BaseClient:
         self.access_token = access_token
         self.access_token_secret = access_token_secret
         
-        #gameTwitterAccessToken
         self.game_twitter_access_token = game_twitter_access_token
 
         self.return_type = return_type
@@ -148,7 +147,7 @@ class BaseClient:
 
         response = self.request(method, route, params=request_params,
                                 json=json, user_auth=user_auth, files=files)
-
+        
         if self.return_type is requests.Response:
             return response
 
@@ -224,7 +223,7 @@ class Client(BaseClient):
     """Client( \
         bearer_token=None, consumer_key=None, consumer_secret=None, \
         access_token=None, access_token_secret=None, *, return_type=Response, \
-        wait_on_rate_limit=False \
+        game_twitter_access_token=None, wait_on_rate_limit=False \
     )
 
     Twitter API v2 Client
@@ -249,6 +248,8 @@ class Client(BaseClient):
         Twitter API OAuth 1.0a Access Token Secret
     return_type : type[dict | requests.Response | Response]
         Type to return from requests to the API
+    game_twitter_access_token : str | None
+        Virtuals Protocol Twitter API GAME SDK Access Token
     wait_on_rate_limit : bool
         Whether to wait when rate limit is reached
 
@@ -797,7 +798,7 @@ class Client(BaseClient):
             ``exclude_reply_user_ids`` is present.
         reply_settings : str | None
             `Settings`_ to indicate who can reply to the Tweet. Limited to
-            "mentionedUsers" and "following". If the field isn’t specified, it
+            "mentionedUsers" and "following". If the field isn't specified, it
             will default to everyone.
         text : str | None
             Text of the Tweet being created. This field is required if
@@ -871,16 +872,17 @@ class Client(BaseClient):
         )
 
     #Upload media
-    def upload_media(self, media: bytes, user_auth=True) -> str:
+    def upload_media(self, media: bytes, media_type: str, user_auth=True) -> str:
         """
         Uploads media (e.g. image, video) to X and returns the media ID.
         """
-        try:
-            return self._make_request(
-                "POST", f"/2/media/upload", files={"file": media}, user_auth=user_auth
-            )['media_id']
-        except Exception as e:
-            return None
+        
+        response = self._make_request(
+            "POST", f"/2/media/upload", files={"file": ("filename", media, media_type)}, user_auth=user_auth
+        )
+
+        return response["media_id"]
+
 
     # Quote Tweets
     def get_quote_tweets(self, id, *, user_auth=False, **params):

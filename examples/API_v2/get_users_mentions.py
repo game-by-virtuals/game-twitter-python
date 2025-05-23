@@ -1,16 +1,20 @@
-import tweepy
+import os
 
+from virtuals_tweepy import Client
+from dotenv import load_dotenv
 
-bearer_token = ""
+load_dotenv()
 
-client = tweepy.Client(bearer_token)
+game_twitter_access_token = os.environ.get("GAME_TWITTER_ACCESS_TOKEN")
+
+client = Client(game_twitter_access_token = game_twitter_access_token)
 
 # Get User's Mentions
 
 # This endpoint/method returns Tweets mentioning a single user specified by the
 # requested user ID
 
-user_id = 2244994945
+user_id = 1859490326316187649
 
 response = client.get_users_mentions(user_id)
 
